@@ -25,6 +25,13 @@
   </header>
 
   <main id="main">
+    <svg class="image-filters" aria-hidden="true">
+      <filter id="watercolor-cutout" color-interpolation-filters="sRGB">
+        <feColorMatrix in="SourceGraphic" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -5.33 -5.33 -5.33 0 15.04" result="background-removed"/>
+        <feMorphology in="background-removed" operator="erode" radius="2.5" result="clean-edge"/>
+        <feComposite in="SourceGraphic" in2="clean-edge" operator="in"/>
+      </filter>
+    </svg>
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-copy">
         <p class="eyebrow"><span></span>浜田市・認知症対応型通所介護</p>
