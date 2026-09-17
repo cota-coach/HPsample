@@ -11,3 +11,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #e5
 .hero-art{max-width:1000px;width:min(1000px,65vw);margin-left:clamp(-260px,-18vw,-140px);pointer-events:none}.hero-art>img{display:block;width:100%;height:auto;mix-blend-mode:multiply}.timeline{grid-template-columns:repeat(5,1fr)}.timeline-feature{grid-column:span 2}.day-photo{height:clamp(220px,23vw,330px);margin:30px 0 25px;position:relative;overflow:hidden;background:#dfe5d7}.day-photo img{width:100%;height:100%;display:block;object-fit:cover;object-position:center}.day-row:has(.day-photo){grid-template-columns:140px 1fr 370px}.day-row:has(.day-photo) .day-photo{height:245px;margin:0}
 @media(max-width:1000px){.hero-art{max-width:700px;width:min(700px,60vw);margin-left:-14vw}.timeline-feature{grid-column:span 1}.day-row:has(.day-photo){grid-template-columns:100px 1fr}.day-row:has(.day-photo) .day-photo{grid-column:2;width:min(100%,430px)}}
 @media(max-width:720px){.hero-art{max-width:none;width:125%;margin:20px -18% -45px 8%}.day-photo{height:240px;margin-top:18px}.day-photo img{object-position:50% 48%}.day-row:has(.day-photo){display:block}.day-row:has(.day-photo) .day-photo{width:100%;height:220px;margin-top:22px}}
+
+/* Hero readability */
+.header .brand small{font-size:12px}.header .brand strong{font-size:19px}.header .nav{font-size:15px}.hero .eyebrow{font-size:14px}.hero-lead{font-size:clamp(17px,1.4vw,20px);max-width:430px}.hero-actions{font-size:18px}.hero-actions .text-button{font-size:20px}.hours{font-size:14px}
+@media(min-width:1001px){.hero-copy{transform:translateY(-28px)}.hero h1{font-size:clamp(40px,3.8vw,70px)}}
+@media(max-width:1000px) and (min-width:721px){.hero-lead{max-width:42vw}}
+@media(max-width:720px){.header .brand strong{font-size:16px}.hero-copy{transform:none}.hero-lead{max-width:none}.hero-art{width:125%;margin:20px -12.5% 30px}}
