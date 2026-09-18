@@ -24,6 +24,8 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
   if (!track || slides.length === 0) return;
 
   let activeIndex = 0;
+  let programmaticScrollTimer;
+  let isProgrammaticScroll = false;
 
   const showActiveSlide = () => {
     slides.forEach((slide, index) => {
@@ -41,6 +43,7 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
   };
 
   const updateControls = () => {
+    if (isProgrammaticScroll) return;
     activeIndex = currentIndex();
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
     if (previousButton) previousButton.disabled = activeIndex === 0;
@@ -51,6 +54,8 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
   const moveTo = (index) => {
     activeIndex = Math.max(0, Math.min(slides.length - 1, index));
     const maximumScroll = track.scrollWidth - track.clientWidth;
+    isProgrammaticScroll = true;
+    window.clearTimeout(programmaticScrollTimer);
     track.scrollTo({
       left: maximumScroll * (activeIndex / (slides.length - 1)),
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
@@ -59,6 +64,9 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
     if (previousButton) previousButton.disabled = activeIndex === 0;
     if (nextButton) nextButton.disabled = activeIndex === slides.length - 1;
     showActiveSlide();
+    programmaticScrollTimer = window.setTimeout(() => {
+      isProgrammaticScroll = false;
+    }, 650);
   };
 
   previousButton?.addEventListener('click', () => moveTo(activeIndex - 1));
