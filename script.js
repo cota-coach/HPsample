@@ -25,6 +25,15 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
 
   let activeIndex = 0;
 
+  const showActiveSlide = () => {
+    slides.forEach((slide, index) => {
+      const isActive = index === activeIndex;
+      slide.classList.toggle('is-active', isActive);
+      if (isActive) slide.setAttribute('aria-current', 'true');
+      else slide.removeAttribute('aria-current');
+    });
+  };
+
   const currentIndex = () => {
     const maximumScroll = track.scrollWidth - track.clientWidth;
     if (maximumScroll <= 0) return 0;
@@ -36,6 +45,7 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
     if (previousButton) previousButton.disabled = activeIndex === 0;
     if (nextButton) nextButton.disabled = activeIndex === slides.length - 1;
+    showActiveSlide();
   };
 
   const moveTo = (index) => {
@@ -48,6 +58,7 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
     if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
     if (previousButton) previousButton.disabled = activeIndex === 0;
     if (nextButton) nextButton.disabled = activeIndex === slides.length - 1;
+    showActiveSlide();
   };
 
   previousButton?.addEventListener('click', () => moveTo(activeIndex - 1));
