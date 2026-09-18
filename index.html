@@ -59,11 +59,15 @@
 
     <section class="day section" id="day" aria-labelledby="day-title">
       <div class="section-heading left"><p class="eyebrow"><span></span>A DAY AT WANOIE</p><h2 id="day-title">和乃家で過ごす一日</h2><p>決められた予定に合わせるのではなく、その日の体調や気持ちに合わせて。<br>日々の何気ない時間を大切にします。</p></div>
-      <div class="timeline">
-        <article><time>AM</time><span class="day-icon">⌂</span><h3>お迎え・朝の時間</h3><p>ご自宅までお迎えに。あいさつを交わし、ゆっくり一日を始めます。</p></article>
-        <article><time>AM–NOON</time><span class="day-icon">♨</span><h3>それぞれの活動</h3><p>入浴や運動、趣味の時間。できることはご本人と一緒に行います。</p></article>
-        <article class="timeline-feature"><time>NOON</time><figure class="day-photo"><img src="assets/images/day-cooking-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="利用者とスタッフが一緒に食事を盛り付ける様子"></figure><h3>つくる・味わう</h3><p>調理にも参加しながら、あたたかな食事を囲みます。</p></article>
-        <article><time>PM</time><span class="day-icon">♧</span><h3>楽しむ・帰る</h3><p>散歩や外出、季節の行事、おやつの後はご自宅へお送りします。</p></article>
+      <div class="day-slider" data-day-slider>
+        <div class="timeline day-slider-track" id="day-slider-track" tabindex="0" aria-label="和乃家で過ごす一日の場面">
+          <article class="day-slide"><figure class="day-photo"><img src="assets/images/day-pickup-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="自宅の玄関先で利用者を迎えるスタッフ"></figure><time>AM</time><h3>ご自宅へお迎え</h3><p>ご自宅までお迎えに。あいさつを交わし、ゆっくり一日を始めます。</p></article>
+          <article class="day-slide"><figure class="day-photo"><img src="assets/images/day-morning-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="利用者が会話や趣味を楽しみ、それぞれの朝を過ごす様子"></figure><time>午前</time><h3>それぞれの時間</h3><p>入浴や運動、趣味の時間。できることはご本人と一緒に行います。</p></article>
+          <article class="day-slide"><figure class="day-photo"><img src="assets/images/day-cooking-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="利用者とスタッフが一緒に食事を盛り付ける様子"></figure><time>お昼</time><h3>つくる・味わう</h3><p>調理にも参加しながら、あたたかな食事を囲みます。</p></article>
+          <article class="day-slide"><figure class="day-photo"><img src="assets/images/day-afternoon-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="利用者とスタッフが草花を眺めながら散歩する様子"></figure><time>午後</time><h3>楽しむ・身体を動かす</h3><p>散歩や外出、季節の行事など、体調に合わせて楽しみます。</p></article>
+          <article class="day-slide"><figure class="day-photo"><img src="assets/images/day-home-original.png" width="1536" height="1024" loading="lazy" decoding="async" alt="帰宅前にお茶とおやつを楽しみながらスタッフと話す利用者"></figure><time>夕方</time><h3>おやつ・ご自宅へ</h3><p>おやつでひと息ついてから、ご自宅までお送りします。</p></article>
+        </div>
+        <div class="day-slider-controls"><p class="day-slider-status" aria-live="polite"><span data-day-current>01</span> / 05</p><div><button class="day-slider-button" type="button" data-day-prev aria-controls="day-slider-track" aria-label="前の場面を見る">←</button><button class="day-slider-button" type="button" data-day-next aria-controls="day-slider-track" aria-label="次の場面を見る">→</button></div></div>
       </div>
       <p class="note">※過ごし方は一例です。体調やご希望に応じて内容は異なります。</p>
     </section>
