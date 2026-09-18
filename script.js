@@ -23,31 +23,35 @@ document.querySelectorAll('[data-day-slider]').forEach((slider) => {
 
   if (!track || slides.length === 0) return;
 
+  let activeIndex = 0;
+
   const currentIndex = () => {
-    const trackLeft = track.getBoundingClientRect().left;
-    return slides.reduce((closest, slide, index) => {
-      const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
-      return distance < closest.distance ? { index, distance } : closest;
-    }, { index: 0, distance: Infinity }).index;
+    const maximumScroll = track.scrollWidth - track.clientWidth;
+    if (maximumScroll <= 0) return 0;
+    return Math.round((track.scrollLeft / maximumScroll) * (slides.length - 1));
   };
 
   const updateControls = () => {
-    const index = currentIndex();
-    if (currentLabel) currentLabel.textContent = String(index + 1).padStart(2, '0');
-    if (previousButton) previousButton.disabled = index === 0;
-    if (nextButton) nextButton.disabled = index === slides.length - 1;
+    activeIndex = currentIndex();
+    if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
+    if (previousButton) previousButton.disabled = activeIndex === 0;
+    if (nextButton) nextButton.disabled = activeIndex === slides.length - 1;
   };
 
   const moveTo = (index) => {
-    slides[Math.max(0, Math.min(slides.length - 1, index))].scrollIntoView({
+    activeIndex = Math.max(0, Math.min(slides.length - 1, index));
+    const maximumScroll = track.scrollWidth - track.clientWidth;
+    track.scrollTo({
+      left: maximumScroll * (activeIndex / (slides.length - 1)),
       behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
-      block: 'nearest',
-      inline: 'start',
     });
+    if (currentLabel) currentLabel.textContent = String(activeIndex + 1).padStart(2, '0');
+    if (previousButton) previousButton.disabled = activeIndex === 0;
+    if (nextButton) nextButton.disabled = activeIndex === slides.length - 1;
   };
 
-  previousButton?.addEventListener('click', () => moveTo(currentIndex() - 1));
-  nextButton?.addEventListener('click', () => moveTo(currentIndex() + 1));
+  previousButton?.addEventListener('click', () => moveTo(activeIndex - 1));
+  nextButton?.addEventListener('click', () => moveTo(activeIndex + 1));
   track.addEventListener('scroll', updateControls, { passive: true });
   window.addEventListener('resize', updateControls);
   updateControls();
